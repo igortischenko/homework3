@@ -11,15 +11,16 @@
         var age = prompt ("Сколько тебе лет?");
         var n = age % 10;
         var s = age % 100
-
-        if(age >= 5 && age <= 20 ) {
+        if (age == 0) {
+            alert (age + " лет") // добавил для нуля
+        } else if(age >= 5 && age <= 20 ) {
             alert (age + " лет");
         } else if( n == 1 ) {
             alert (age + " год");
         } else if ( n >= 2 && n <= 4 ) {
             alert (age + " года");
-        }else if ( n >= 5 && n <= 9 ) {
-            alert (age + " лет");
+        }else if (( n >= 5 && n <= 9 ) || n == 0) {
+            alert (age + " лет"); // добавил для 30,40,50..
         } else if ( s >= 5 && age <= 20 ) {
             alert (age + " лет");
         } else if( s == 1 ) {
