@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const toDoList = {
+                _listTask: [
+                    { 
+                        head,
+                        text,
+                        status: false },
+                    { 
+                        head, 
+                        text, 
+                        status: false }
+                ],
+
+                get listTask() {
+                    return this._listTask;
+                },
+
+                set listTask(value) {
+                    throw 'error, use todolist method';
+                },
+
+                add(head, text) {
+                    const note = {
+                        head,
+                        text,
+                        status: false,
+                    }
+
+                    if (this.checkUniq(head)) {
+                        this.listTask.push(note);
+                    }
+                },
+
+                checkUniq(head) {
+                    return !this.listTask.find(note => note.head === head);
+                },
+
+                remove(head) {
+                    this.listTask.forEach(item => {
+                        if (item.head == head) {
+                            item.status = !item.status;
+                        }
+                    })
+                },
+
+                delete(head) {
+                    const index = this.listTask.findIndex(note => note.head == head);
+
+                    this.listTask.splice(index, 1);
+                },
+
+                countTask() {
+                    return this.listTask.reduce((info, note) => {
+                        if (!info.total) {
+                            info.total = this.listTask.length;
+                        }
+
+                        if (!info[note.status]) {
+                            info[note.status] = 0;
+                        }
+
+                        info[note.status]++;
+
+                        return info;
+                    }, {});
+                },
+            }
+
+            Object.defineProperties(toDoList, {
+                add: { enumerable: false },
+                checkUniq: { enumerable: false },
+                remove: { enumerable: false },
+                delete: { enumerable: false },
+                countTask: { enumerable: false },
+            });
+
+            Object.freeze(toDoList);
+    </script>
+</body>
+</html>
